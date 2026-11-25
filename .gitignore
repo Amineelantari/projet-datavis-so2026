@@ -221,3 +221,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# les données ne sont jamais versionnées (exigence du sujet)
+data/
+*.csv
