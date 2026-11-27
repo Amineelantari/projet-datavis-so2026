@@ -67,3 +67,18 @@ def ajouter_tranche_experience(df):
         include_lowest=True,
     )
     return df
+
+
+# réponses exactes du sondage (colonne Industry)
+INDUSTRIE_ESN = "IT services, consulting, systems integration, or managed services"
+INDUSTRIE_EDITEUR = "Software development"
+
+
+def ajouter_secteur(df):
+    # crée la colonne Secteur à partir du secteur d'activité (Industry)
+    df = df.copy()
+    # par défaut, et aussi pour ceux qui n'ont pas répondu
+    df["Secteur"] = "Autre secteur"
+    df.loc[df["Industry"] == INDUSTRIE_ESN, "Secteur"] = "ESN"
+    df.loc[df["Industry"] == INDUSTRIE_EDITEUR, "Secteur"] = "Éditeur de logiciels"
+    return df
