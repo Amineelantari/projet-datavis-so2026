@@ -45,6 +45,29 @@ REPONSES_NEUTRES = [
     "Autre",
 ]
 
+# chaque facteur est rangé dans un levier sur lequel la DRH peut agir
+# (le télétravail n'est pas dans ces questions : il est traité dans l'axe 5)
+LEVIERS = {
+    # ce qui gêne
+    "Priorités floues": "Organisation des missions",
+    "Organisation inefficace": "Organisation des missions",
+    "Changements dans la direction": "Organisation des missions",
+    "Manque de temps ou de moyens": "Charge de travail",
+    "Documentation insuffisante": "Accompagnement et formation",
+    "Manque de soutien": "Accompagnement et formation",
+    "Outils peu fiables": "Outils",
+    "Pas les bons outils": "Outils",
+    # ce qui aide
+    "Priorités claires": "Organisation des missions",
+    "Meilleure organisation": "Organisation des missions",
+    "Assez de temps ou de moyens": "Charge de travail",
+    "Bonne documentation": "Accompagnement et formation",
+    "Soutien de l'équipe": "Accompagnement et formation",
+    "Les bons outils": "Outils",
+    "Outils fiables": "Outils",
+}
+HORS_LEVIER = "Aucun facteur précis"
+
 
 def classement(df, colonne, traductions):
     # part de chaque réponse parmi ceux qui ont répondu, de la plus citée à la moins citée
@@ -114,3 +137,19 @@ def comparaison_esn(df, colonne, traductions):
         tableau["total_groupe"] = groupe[colonne].notna().sum()
         morceaux.append(tableau)
     return pd.concat(morceaux, ignore_index=True)
+
+
+def parts_par_levier(df, colonne, traductions):
+    # regroupe les facteurs par levier de la DRH et additionne leurs parts ;
+    # « Rien », « Ne sait pas » et « Autre » vont dans HORS_LEVIER, placé en dernier
+    tableau = classement(df, colonne, traductions)
+    tableau["levier"] = tableau["reponse"].map(LEVIERS).fillna(HORS_LEVIER)
+    leviers = (
+        tableau.groupby("levier")[["repondants", "part"]].sum()
+        .reset_index()
+        .sort_values("part", ascending=False)
+    )
+    leviers["part"] = leviers["part"].round(1)
+    # le groupe hors levier passe à la fin, quelle que soit sa taille
+    leviers["hors"] = leviers["levier"] == HORS_LEVIER
+    return leviers.sort_values("hors", kind="stable").drop(columns="hors").reset_index(drop=True)
