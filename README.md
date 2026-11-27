@@ -18,11 +18,13 @@ Les données sont téléchargées automatiquement au premier lancement dans `dat
 
 ## Les axes
 
-1. La satisfaction au fil de la carrière
-2. Le sentiment de stagnation
-3. Ce qui aide et ce qui gêne
-4. Évoluer : le rôle et la formation
-5. Télétravail et organisation
+| Axe | Responsable | Branche |
+|---|---|---|
+| 1. La satisfaction au fil de la carrière | Amine | `axe-1` |
+| 2. Le sentiment de stagnation | Saad | `axe-2` |
+| 3. Ce qui aide et ce qui gêne | Toli | `axe-3` |
+| 4. Évoluer : le rôle et la formation | Gaetan | `axe-4` |
+| 5. Télétravail et organisation | Paul | `axe-5` |
 
 ## Pour le groupe
 

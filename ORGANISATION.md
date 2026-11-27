@@ -68,10 +68,10 @@ Pour avoir les données prêtes : `preparer(charger(2026))`.
 |---|---|---|---|
 | Structure, README, chargement | `README.md`, `analyse/chargement.py` | Amine | fait |
 | Population, partie 1 : qui on garde, zones | `analyse/population.py` | Amine | fait |
-| Population, partie 2 : expérience, secteur, `preparer` | `analyse/population.py`, à la suite | Membre 2 | à faire |
-| Correspondance 2025 / 2026 | `HARMONISATION.md` | Membre 3 | à faire |
-| Légende de population sous chaque figure | `analyse/affichage.py` | Membre 4 | à faire |
-| Architecture, puis tableau de bord | `ARCHITECTURE.md`, `app.py` | Membre 5 | à faire |
+| Population, partie 2 : expérience, secteur, `preparer` | `analyse/population.py`, à la suite | Saad | à faire |
+| Correspondance 2025 / 2026 | `HARMONISATION.md` | Toli | à faire |
+| Légende de population sous chaque figure | `analyse/affichage.py` | Gaetan | à faire |
+| Architecture, puis tableau de bord | `ARCHITECTURE.md`, `app.py` | Paul | à faire |
 
 ### Ce que chaque fichier du socle doit contenir
 
@@ -120,6 +120,7 @@ Pour chaque axe, il faut au minimum : 2 ou 3 vues, des filtres propres à l'axe,
 
 ### Axe 1 : la satisfaction au fil de la carrière
 
+- **Responsable :** Amine
 - **Branche :** `axe-1` · **Fichiers :** `analyse/axe_1.py`, `pages/1_Satisfaction.py`
 - **Question pour la DRH :** à quel moment de la carrière la satisfaction baisse-t-elle ?
 - **Colonnes :** `JobSat`, de 0 à 10, et `Tranche_experience`
@@ -128,6 +129,7 @@ Pour chaque axe, il faut au minimum : 2 ou 3 vues, des filtres propres à l'axe,
 
 ### Axe 2 : le sentiment de stagnation
 
+- **Responsable :** Saad
 - **Branche :** `axe-2` · **Fichiers :** `analyse/axe_2.py`, `pages/2_Stagnation.py`
 - **Question pour la DRH :** qui se sent stagner, à quel moment, et pourquoi ?
 - **Colonne :** `JobSatComplacent` : pas de stagnation, épuisement, incertitude économique, IA, manque d'évolution, autre
@@ -136,6 +138,7 @@ Pour chaque axe, il faut au minimum : 2 ou 3 vues, des filtres propres à l'axe,
 
 ### Axe 3 : ce qui aide et ce qui gêne
 
+- **Responsable :** Toli
 - **Branche :** `axe-3` · **Fichiers :** `analyse/axe_3.py`, `pages/3_Ce_qui_aide_et_gene.py`
 - **Question pour la DRH :** qu'est-ce qui facilite ou complique le travail au quotidien ?
 - **Colonnes :** `JobEase`, `JobDifficulty`, et `JobEaseAI_1` à `_10`, `JobDifficultyAI_1` à `_10` pour savoir si l'IA y a joué un rôle
@@ -144,6 +147,7 @@ Pour chaque axe, il faut au minimum : 2 ou 3 vues, des filtres propres à l'axe,
 
 ### Axe 4 : évoluer, le rôle et la formation
 
+- **Responsable :** Gaetan
 - **Branche :** `axe-4` · **Fichiers :** `analyse/axe_4.py`, `pages/4_Evoluer.py`
 - **Question pour la DRH :** les développeurs qui ont pu évoluer sont-ils plus satisfaits, et se sentent-ils moins bloqués ?
 - **Colonnes :** `ICorPM` : développeur, développeur senior, manager ou les deux ; `LearnAI` : se former seul, au travail, ou non
@@ -152,6 +156,7 @@ Pour chaque axe, il faut au minimum : 2 ou 3 vues, des filtres propres à l'axe,
 
 ### Axe 5 : télétravail et organisation
 
+- **Responsable :** Paul
 - **Branche :** `axe-5` · **Fichiers :** `analyse/axe_5.py`, `pages/5_Teletravail.py`
 - **Question pour la DRH :** le mode de travail et le contexte de l'équipe changent-ils la satisfaction ?
 - **Colonnes :** `WorkSetting`, `OrgSize`, `TechBudget`
@@ -162,11 +167,11 @@ Pour chaque axe, il faut au minimum : 2 ou 3 vues, des filtres propres à l'axe,
 
 | Axe | Relu par |
 |---|---|
-| Axe 1 | Membre de l'axe 2 |
-| Axe 2 | Membre de l'axe 3 |
-| Axe 3 | Membre de l'axe 4 |
-| Axe 4 | Membre de l'axe 5 |
-| Axe 5 | Membre de l'axe 1 |
+| Axe 1, Amine | Saad |
+| Axe 2, Saad | Toli |
+| Axe 3, Toli | Gaetan |
+| Axe 4, Gaetan | Paul |
+| Axe 5, Paul | Amine |
 
 ## 6. Les branches
 
