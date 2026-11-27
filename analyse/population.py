@@ -45,3 +45,25 @@ def ajouter_zone(df):
     df.loc[df["Country"].isin(PAYS_FRONTALIERS), "Zone"] = "Pays frontaliers"
     df.loc[df["Country"] == "France", "Zone"] = "France"
     return df
+
+
+# Partie 2 : le profil des personnes et la préparation finale
+
+# bornes des tranches d'expérience, en années : (0, 1], (1, 3], (3, 6], ...
+BORNES_EXPERIENCE = [0, 1, 3, 6, 10, 20, float("inf")]
+TRANCHES_EXPERIENCE = ["0-1", "2-3", "4-6", "7-10", "11-20", "21+"]
+
+
+def ajouter_tranche_experience(df):
+    # crée la colonne Tranche_experience à partir des années d'expérience (WorkExp)
+    df = df.copy()
+    # en nombre ; ce qui n'est pas un nombre devient vide (NaN)
+    annees = pd.to_numeric(df["WorkExp"], errors="coerce")
+    # ceux qui n'ont pas répondu restent vides, et ne sont dans aucune tranche
+    df["Tranche_experience"] = pd.cut(
+        annees,
+        bins=BORNES_EXPERIENCE,
+        labels=TRANCHES_EXPERIENCE,
+        include_lowest=True,
+    )
+    return df
