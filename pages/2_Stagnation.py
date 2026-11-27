@@ -61,9 +61,13 @@ def sans_decor(fig):
     # pas de décor : les valeurs sont écrites sur les barres, pas besoin d'axe des valeurs
     fig.update_xaxes(visible=False)
     fig.update_yaxes(title=None)
-    fig.update_layout(margin={"t": 10, "b": 0, "l": 0, "r": 0})
+    # marge à droite pour que l'étiquette de la plus longue barre ne soit pas coupée
+    fig.update_layout(margin={"t": 10, "b": 0, "l": 0, "r": 50})
     return fig
 
+
+# même mise en page large que le tableau de bord (app.py)
+st.set_page_config(page_title="Stagnation · Garder ses développeurs", layout="wide")
 
 # Les filtres communs, choisis sur le tableau de bord (app.py)
 zones = st.session_state.get("zones", ZONES_DEFAUT)
