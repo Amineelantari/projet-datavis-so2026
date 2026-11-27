@@ -82,3 +82,12 @@ def ajouter_secteur(df):
     df.loc[df["Industry"] == INDUSTRIE_ESN, "Secteur"] = "ESN"
     df.loc[df["Industry"] == INDUSTRIE_EDITEUR, "Secteur"] = "Éditeur de logiciels"
     return df
+
+
+def preparer(df):
+    # la population de l'étude, prête pour tous les axes : preparer(charger(2026))
+    df = population_principale(df)
+    df = ajouter_zone(df)
+    df = ajouter_tranche_experience(df)
+    df = ajouter_secteur(df)
+    return df
