@@ -2,6 +2,15 @@
 
 Ce fichier explique à chaque membre ce qu'il doit faire, dans quel ordre, et avec quelles règles.
 Si tu viens de faire `git pull`, commence par lire ce fichier en entier.
+Ensuite, lis `consignes/commun.md`, puis ton fichier personnel dans `consignes/` : il dit étape par étape ce que tu dois faire et ce dont tu as besoin.
+
+| Personne | Consignes |
+|---|---|
+| Amine | `consignes/amine_axe-1.md` |
+| Saad | `consignes/saad_axe-2.md` |
+| Toli | `consignes/toli_axe-3.md` |
+| Gaetan | `consignes/gaetan_axe-4.md` |
+| Paul | `consignes/paul_axe-5.md` |
 
 ## 1. Le sujet
 
@@ -189,7 +198,34 @@ Remplacer `axe-2` par le numéro de son axe. Ensuite :
 - quand l'axe marche : sur GitHub, « Compare & pull request », choisir son relecteur, puis fusion dans `main` après relecture ;
 - après chaque fusion, tout le monde fait `git switch main` puis `git pull`.
 
-## 7. Les règles
+## 7. Le visuel final
+
+L'application a six pages : le tableau de bord, puis une page par axe dans le menu de gauche.
+
+```
+┌─────────────────────┬──────────────────────────────────────────────────────┐
+│ app                 │  Garder ses développeurs                             │
+│ 1 Satisfaction      │  Message pour la DRH, en une ou deux phrases         │
+│ 2 Stagnation        │                                                      │
+│ 3 Ce qui aide/gêne  │  ┌────────────┐ ┌────────────┐ ┌────────────┐        │
+│ 4 Évoluer           │  │ satisfact. │ │ stagnation │ │ répondants │        │
+│ 5 Télétravail       │  └────────────┘ └────────────┘ └────────────┘        │
+│                     │                                                      │
+│ FILTRES COMMUNS     │  Titre qui affirme le résultat principal             │
+│ Zone                │  ▇▇▇ ▇▇ ▇▇ ▇▇ ▇▇▇ ▇▇▇▇                                │
+│ [x] France          │  Qui · quelle année · combien de répondants          │
+│ [x] Pays frontal.   │                                                      │
+│ Secteur             │  Limites : volontaires, pas de mesure des départs    │
+│ [x] ESN [x] Autres  │                                                      │
+└─────────────────────┴──────────────────────────────────────────────────────┘
+```
+
+- **Le tableau de bord** donne la réponse à la DRH : le message, trois chiffres clés, une ou deux figures.
+- **Chaque page d'axe** donne le détail : ses propres filtres en haut, deux ou trois vues, chacune avec un titre qui affirme et sa légende de population.
+- **Les filtres communs** restent les mêmes quand on change de page.
+- **Une seule couleur forte**, `ACCENT`, pour ce qui compte ; le reste en `GRIS`. Les réponses du sondage sont toujours traduites en français à l'écran.
+
+## 8. Les règles
 
 1. Toujours `git pull` avant de commencer.
 2. On ne touche qu'à ses propres fichiers. Pour modifier le socle, on prévient le groupe avant.

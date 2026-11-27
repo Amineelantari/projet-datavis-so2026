@@ -11,7 +11,7 @@ Lis aussi `ORGANISATION.md` : il décrit le sujet, la population commune, les ci
 
 ## Comment aider
 
-1. Commence par demander au membre quel axe ou quelle partie du socle il porte, puis relis la section correspondante dans `ORGANISATION.md`.
+1. Commence par demander au membre son prénom, puis lis `consignes/commun.md` et son fichier `consignes/<prénom>_axe-X.md` : il contient ses étapes, ses colonnes, les réponses exactes à utiliser et le visuel attendu.
 2. Avance par petites étapes : une fonction ou une vue à la fois, testée avant de passer à la suite.
 3. Explique chaque étape en français simple : ce que fait le code, pourquoi ce choix, ce qu'il faut vérifier dans le résultat.
 4. Fais d'abord explorer les données dans un notebook de `notebooks/` avant d'écrire le code de l'application.
