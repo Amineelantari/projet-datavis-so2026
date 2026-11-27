@@ -45,3 +45,49 @@ def ajouter_zone(df):
     df.loc[df["Country"].isin(PAYS_FRONTALIERS), "Zone"] = "Pays frontaliers"
     df.loc[df["Country"] == "France", "Zone"] = "France"
     return df
+
+
+# Partie 2 : le profil des personnes et la préparation finale
+
+# bornes des tranches d'expérience, en années : (0, 1], (1, 3], (3, 6], ...
+BORNES_EXPERIENCE = [0, 1, 3, 6, 10, 20, float("inf")]
+TRANCHES_EXPERIENCE = ["0-1", "2-3", "4-6", "7-10", "11-20", "21+"]
+
+
+def ajouter_tranche_experience(df):
+    # crée la colonne Tranche_experience à partir des années d'expérience (WorkExp)
+    df = df.copy()
+    # en nombre ; ce qui n'est pas un nombre devient vide (NaN)
+    annees = pd.to_numeric(df["WorkExp"], errors="coerce")
+    # ceux qui n'ont pas répondu restent vides, et ne sont dans aucune tranche
+    df["Tranche_experience"] = pd.cut(
+        annees,
+        bins=BORNES_EXPERIENCE,
+        labels=TRANCHES_EXPERIENCE,
+        include_lowest=True,
+    )
+    return df
+
+
+# réponses exactes du sondage (colonne Industry)
+INDUSTRIE_ESN = "IT services, consulting, systems integration, or managed services"
+INDUSTRIE_EDITEUR = "Software development"
+
+
+def ajouter_secteur(df):
+    # crée la colonne Secteur à partir du secteur d'activité (Industry)
+    df = df.copy()
+    # par défaut, et aussi pour ceux qui n'ont pas répondu
+    df["Secteur"] = "Autre secteur"
+    df.loc[df["Industry"] == INDUSTRIE_ESN, "Secteur"] = "ESN"
+    df.loc[df["Industry"] == INDUSTRIE_EDITEUR, "Secteur"] = "Éditeur de logiciels"
+    return df
+
+
+def preparer(df):
+    # la population de l'étude, prête pour tous les axes : preparer(charger(2026))
+    df = population_principale(df)
+    df = ajouter_zone(df)
+    df = ajouter_tranche_experience(df)
+    df = ajouter_secteur(df)
+    return df
