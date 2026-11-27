@@ -40,3 +40,34 @@ def part_stagnation_par_experience(df):
         .reset_index()
     )
     return tableau
+
+
+def causes_stagnation(df):
+    # parmi les personnes en stagnation : combien donnent chaque cause, et quelle part ça fait
+    reponses = reponses_stagnation(df)
+    en_stagnation = reponses[reponses["En_stagnation"]]
+    tableau = en_stagnation["Reponse"].value_counts().rename_axis("Cause").reset_index(name="nombre")
+    # repondants = toutes les personnes en stagnation, la base de la part
+    tableau["repondants"] = len(en_stagnation)
+    tableau["part"] = tableau["nombre"] / tableau["repondants"]
+    return tableau
+
+
+# ordre d'affichage des secteurs
+ORDRE_SECTEURS = ["ESN", "Éditeur de logiciels", "Autre secteur"]
+
+
+def causes_par_secteur(df):
+    # les causes de stagnation dans chaque secteur, une ligne par secteur et par cause
+    # (format long, pratique pour Plotly ; pour avoir les secteurs en colonnes :
+    #  tableau.pivot(index="Cause", columns="Secteur", values="part"))
+    reponses = reponses_stagnation(df)
+    en_stagnation = reponses[reponses["En_stagnation"]]
+    tableau = en_stagnation.groupby(["Secteur", "Reponse"]).size().reset_index(name="nombre")
+    tableau = tableau.rename(columns={"Reponse": "Cause"})
+    # repondants = les personnes en stagnation du secteur, la base de la part
+    tableau["repondants"] = tableau.groupby("Secteur")["nombre"].transform("sum")
+    tableau["part"] = tableau["nombre"] / tableau["repondants"]
+    # secteurs dans l'ordre ESN, éditeurs, autres ; causes de la plus citée à la moins citée
+    tableau["Secteur"] = pd.Categorical(tableau["Secteur"], categories=ORDRE_SECTEURS, ordered=True)
+    return tableau.sort_values(["Secteur", "part"], ascending=[True, False]).reset_index(drop=True)
