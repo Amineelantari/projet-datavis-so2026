@@ -7,6 +7,10 @@ Sa décision : où investir en priorité pour les garder (formation, organisatio
 
 ## Lancer l'application
 
+    git clone https://github.com/Amineelantari/projet-datavis-so2026.git
+    cd projet-datavis-so2026
+    python3 -m venv .venv
+    source .venv/bin/activate
     pip install -r requirements.txt
     streamlit run app.py
 
@@ -17,8 +21,12 @@ Les données sont téléchargées automatiquement au premier lancement dans `dat
 1. La satisfaction au fil de la carrière
 2. Le sentiment de stagnation
 3. Ce qui aide et ce qui gêne
-4. Se former
+4. Évoluer : le rôle et la formation
 5. Télétravail et organisation
+
+## Pour le groupe
+
+Tout est expliqué dans [ORGANISATION.md](ORGANISATION.md) : le rôle de chacun, les axes, les branches et les règles.
 
 ## Données
 
