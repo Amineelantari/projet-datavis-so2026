@@ -4,7 +4,7 @@ import streamlit as st
 
 from analyse.chargement import charger
 from analyse.population import preparer, TRANCHES_EXPERIENCE
-from analyse.affichage import GRIS, ACCENT, ENCRE, SEUIL, assez_de_reponses, legende_population
+from analyse.affichage import GRIS, ACCENT, SEUIL, assez_de_reponses, legende_population
 from analyse.axe_3 import (
     DIFFICULTES, AIDES, REPONSES_NEUTRES,
     classement_difficultes, classement_aides,
@@ -30,8 +30,9 @@ def format_nombre(valeur, decimales=1):
 
 def mise_en_forme(fig):
     # pas de décor : fond transparent, pas de grille, pas de légende inutile
+    # pas de couleur de texte imposée : Streamlit prend celle du thème, clair ou sombre
     fig.update_layout(showlegend=False, plot_bgcolor="rgba(0,0,0,0)",
-                      paper_bgcolor="rgba(0,0,0,0)", font=dict(color=ENCRE),
+                      paper_bgcolor="rgba(0,0,0,0)",
                       margin=dict(t=20, b=20, l=15, r=15))
     fig.update_xaxes(showgrid=False, showticklabels=False, title=None, zeroline=False)
     fig.update_yaxes(title=None, autorange="reversed")
